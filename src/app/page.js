@@ -1,5 +1,9 @@
-import IpodBody from "./ipod/IpodBody";
+import IpodBody from "./ipod/page";
 
 export default function Home() {
-    return <></>;
+    return (
+        <>
+            <IpodBody />
+        </>
+    );
 }
