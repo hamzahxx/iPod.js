@@ -1,11 +1,17 @@
 import { useState } from "react";
 
 export default function useNavigation() {
+
+    // MENU Related
     const menuData = {
         iPod: ["Cover Flow", "Music", "Games", "Settings", "Sign in"],
         Music: ["Playlists", "Artists", "Albums", "Songs", "Genres"],
-        Artist: [],
-        Album: [],
+        Playlists: [],
+        Artists: [],
+        Albums: [],
+        Songs: [],
+        Genres: ["Rock", "Pop", "Hip-Hop", "Jazz", "Classical"],
+        Games:["Bricks"],
         Settings: ["About", "Choose service", "Device theme", "Sign out"],
     };
 
