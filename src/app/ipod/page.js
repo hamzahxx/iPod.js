@@ -13,10 +13,9 @@ export default function IpodBody() {
                     <Screen menu={currentMenu} index={index} />
                 </div>
                 <Wheel
-                    onUp={back}
-                    onPlay={down}
-                    onRewind={() => console.log("Previous Song")}
-                    onForward={() => console.log("Next Song")}
+                    onUp={up}
+                    onDown={down}
+                    onBack={back}
                     onCenter={select}
                 />
             </div>
