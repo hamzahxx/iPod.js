@@ -1,7 +1,23 @@
-export default function Screen({ menu, index }) {
+import NowPlaying from "./NowPlaying";
+
+export default function Screen({ menu, index, nowPlaying, isPlaying }) {
+    if (nowPlaying) {
+        return (
+            <>
+                <div className="flex justify-between px-2">
+                    <div className="">{menu.title}</div>
+                    {isPlaying ? "▶️" : "⏸️"}
+                </div>
+                <NowPlaying song={nowPlaying} isPlaying={isPlaying} />
+            </>
+        );
+    }
     return (
         <>
-            <div className="">{menu.title}</div>
+            <div className="flex justify-between px-2">
+                <div className="">{menu.title}</div>
+                {isPlaying ? "▶️" : "⏸️"}
+            </div>
             <ul>
                 {menu.items.map((item, i) => (
                     <li

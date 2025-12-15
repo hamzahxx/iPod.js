@@ -1,8 +1,20 @@
 import { useState } from "react";
 
 export default function useNavigation() {
+    // Music playing logic
+    const [nowPlaying, setNowPlaying] = useState(null);
+    const [isPlaying, setIsPlaying] = useState(false);
 
-    // MENU Related
+    const playSong = (song) => {
+        setNowPlaying(song);
+        setIsPlaying(true);
+    };
+
+    const togglePlayPause = () => {
+        setIsPlaying((prev) => !prev);
+    };
+
+    // MENU logic
     const menuData = {
         iPod: ["Cover Flow", "Music", "Games", "Settings", "Sign in"],
         Music: ["Playlists", "Artists", "Albums", "Songs", "Genres"],
@@ -11,7 +23,7 @@ export default function useNavigation() {
         Albums: [],
         Songs: [],
         Genres: ["Rock", "Pop", "Hip-Hop", "Jazz", "Classical"],
-        Games:["Bricks"],
+        Games: ["Bricks"],
         Settings: ["About", "Choose service", "Device theme", "Sign out"],
     };
 
@@ -39,17 +51,40 @@ export default function useNavigation() {
                 { title: selected, items: menuData[selected] },
             ]);
             setIndex(0);
+        } else if (
+            currentMenu.title === "Songs" ||
+            currentMenu.title === "Playlists"
+        ) {
+            playSong({
+                title: selected,
+                artist: "Unknown Artist",
+                album: "Unknown Album",
+            });
         } else {
             console.log("Action:", selected);
         }
     };
 
     const back = () => {
-        if (screen.length > 1) {
+        if (nowPlaying) {
+            setNowPlaying(null);
+        } else if (screen.length > 1) {
             setScreen((prev) => prev.slice(0, -1));
             setIndex(0);
         }
     };
 
-    return { currentMenu, index, up, down, select, back };
+    return {
+        // Menu Related
+        currentMenu,
+        index,
+        up,
+        down,
+        select,
+        back,
+        // Music related
+        nowPlaying,
+        isPlaying,
+        togglePlayPause,
+    };
 }
