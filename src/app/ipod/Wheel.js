@@ -103,24 +103,45 @@ export default function Wheel({ onUp, onDown, onBack, onCenter }) {
         >
             <button
                 onClick={onBack}
+                // Bug fix
+                onTouchEnd={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onBack();
+                }}
                 className="w-20 h-10 absolute top-4 left-1/2 -translate-x-1/2 text-sm font-bold z-10"
             >
                 MENU
             </button>
             <button
                 onClick={() => console.log("Play/Pause")}
+                onTouchEnd={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log("Play/Pause")
+                }}
                 className="w-20 h-10 absolute bottom-4 left-1/2 -translate-x-1/2 text-sm font-bold z-10"
             >
                 ⏯️
             </button>
             <button
                 onClick={() => console.log("Previous")}
+                onTouchEnd={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log("Previous")
+                }}
                 className="w-12 h-20 absolute left-3 top-1/2 -translate-y-1/2 text-sm font-bold z-10"
             >
                 ⏮️
             </button>
             <button
                 onClick={() => console.log("Next")}
+                onTouchEnd={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log("Next")
+                }}
                 className="w-12 h-20 absolute right-3 top-1/2 -translate-y-1/2 text-sm font-bold z-10"
             >
                 ⏭️
